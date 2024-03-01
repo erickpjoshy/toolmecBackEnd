@@ -3,6 +3,7 @@ import cors from 'cors';
 import DB from './DB/dbConnection.js';
 import routes from './routes/index.js';
 const app = express();
+//malewares
 app.use(express.json());
 app.use(cors());
 app.use(routes);
