@@ -1,7 +1,6 @@
 import State from '../../DB/models/stateSchema.js';
 import District from '../../DB/models/districtSchema.js';
 import express from 'express';
-import checkToken from '../../DB/middlewares/checkToken.js';
 
 const router = express.Router();
 
@@ -36,16 +35,6 @@ router.get('/district/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const districts = await District.find({ state: id });
-    res.status(201).json(districts);
-  } catch (e) {
-    res.status(403).json(e);
-  }
-});
-
-router.get('/district', checkToken(['Doctor', 'User']), async (req, res) => {
-  try {
-    //   const { id } = req.params;
-    const districts = await District.find();
     res.status(201).json(districts);
   } catch (e) {
     res.status(403).json(e);

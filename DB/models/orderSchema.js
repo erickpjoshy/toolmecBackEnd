@@ -3,8 +3,9 @@ import { Schema, model } from 'mongoose';
 const orderSchema = Schema(
   {
     user: { type: Schema.Types.ObjectId, ref: 'User' },
-    medcines: [{ type: Schema.Types.ObjectId, ref: 'Medcine' }],
-    deliveryDate: { type: Date },
+    cartProducts: [{ type: Schema.Types.ObjectId, ref: 'Cart' }],
+    // deliveryDate: { type: Date },
+    deliveryType: { type: String },
     bookingDate: { type: Date },
     deliveryDate: { type: Date, default: Date.now() + 4 * 24 * 60 * 60 * 1000 },
     status: {
@@ -13,6 +14,20 @@ const orderSchema = Schema(
     },
     deliveryAddress: {
       type: String,
+      required: true,
+    },
+    deliveryPlace: {
+      type: String,
+      required: true,
+    },
+    District: {
+      type: Schema.Types.ObjectId,
+      ref: 'District',
+      required: true,
+    },
+    State: {
+      type: Schema.Types.ObjectId,
+      ref: 'State',
       required: true,
     },
   },
